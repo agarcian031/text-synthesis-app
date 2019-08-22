@@ -10,30 +10,73 @@ const pitch = document.querySelector("#pitch");
 const pitchValue = document.querySelector("#pitch-value");
 
 // Initialize the voices array (to fetch the voice using the API)
-// NOTE: The voice list is loaded async to the page and an onvoiceschanged event is fired when they are loaded, if no event is specified then it will return an empty array. 
+// NOTE: The voice list is loaded async to the page and an onvoiceschanged event is fired when they are loaded, if no event is specified then it will return an empty array.
 let voices = [];
 
 const getVoices = () => {
   voices = synth.getVoices();
 
-  // loop through voices and create an option for each one 
-  voices.forEach(voice => {
-    // create an option element in the DOM 
-    const option = document.createElement('option');
+  // loop through voices and create an option for each one
+  voices.forEach((voice) => {
+    // create an option element in the DOM
+    const option = document.createElement("option");
     // fill the option with the voice and language
-    option.textContent = voice.name + '('+ voice.lang +')'; 
-    
-    // set needed option attributes 
-    option.setAttribute('data-lang', voice.lang); 
-    option.setAttribute('data-name', voice.name); 
-    // append options to the select 
-    voiceSelect.appendChild(option); 
+    option.textContent = voice.name + "(" + voice.lang + ")";
 
-  })
-  
-};
+    // set needed option attributes
+    option.setAttribute("data-lang", voice.lang);
+    option.setAttribute("data-name", voice.name);
+    // append options to the select
+    voiceSelect.appendChild(option);
+  });
+}; //end API
 
 getVoices();
-if(synth.onvoiceschanged !== undefined) {
-  synth.onvoiceschanged = getVoices; 
+if (synth.onvoiceschanged !== undefined) {
+  synth.onvoiceschanged = getVoices;
 }
+
+// Speak
+// will run as soon as we press speak
+const speak = () => {
+  // check if speaking
+  if (synth.speaking) {
+    console.error("Already speaking...");
+    return;
+  }
+  // make sure the input is not empty and then will tell speech api to say what is in the input
+  if (textInput.value !== "") {
+    const speakText = new SpeechSynthesisUtterance(textInput.value);
+    // speak end
+    speakText.onend = (e) => {
+      console.log("Done speaking...");
+    };
+
+    // speak error
+    speakText.onerror = (e) => {
+      console.error("Something went wrong!");
+    };
+
+    // selected voice
+    // will take the selected voice from whatever we picked
+    const selectedVoice = voiceSelect.selectedOptions[0].getAttribute("data-name");
+
+    // loop through the voices and if the voice selected matches then it will speak the input with the voice
+    voices.forEach((voice) => {
+      if (voice.name === selectedVoice) {
+        speakText.voice = voice;
+      }
+    });
+
+    // set pitch and rate
+    speakText.rate = rate.value;
+    speakText.pitch = pitch.value;
+
+    // will speak
+    synth.speak(speakText);
+  }
+};
+
+
+
+
