@@ -12,8 +12,11 @@
 ---
 
 ### Installation Instructions 
-1. **Coming soon**
+1. Clone for fork the github repository to your local machine 
+2. Run on `[http://localhost:3000]` or use Live Server. 
 
 ### Preview 
+
+- Deployed using gh-pages. Preview deployment [here]. 
 
 
