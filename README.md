@@ -19,6 +19,6 @@
 
 ### Preview 
 
-- Deployed using gh-pages. Preview deployment [here](https://agarcian031.github.io/text-synthesis-app/). 
+- Deployed using gh-pages. [**Preview deployment**](https://agarcian031.github.io/text-synthesis-app/). 
 
 
