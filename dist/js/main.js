@@ -8,6 +8,7 @@ const rate = document.querySelector("#rate");
 const rateValue = document.querySelector("#rate-value");
 const pitch = document.querySelector("#pitch");
 const pitchValue = document.querySelector("#pitch-value");
+const body = document.querySelector('body')
 
 // Initialize the voices array (to fetch the voice using the API)
 // NOTE: The voice list is loaded async to the page and an onvoiceschanged event is fired when they are loaded, if no event is specified then it will return an empty array.
@@ -39,17 +40,26 @@ if (synth.onvoiceschanged !== undefined) {
 // Speak
 // will run as soon as we press speak
 const speak = () => {
+  
+
   // check if speaking
   if (synth.speaking) {
     console.error("Already speaking...");
     return;
   }
   // make sure the input is not empty and then will tell speech api to say what is in the input
-  if (textInput.value !== "") {
+  if (textInput.value !== '') {
+    // add background animation 
+    body.style.background = '#000000 url(img/wave.gif)'; 
+    body.style.backgroundRepeat = 'repeat-x'; 
+    body.style.backgroundSize = '100% 100%'; 
+
+  // get speak text 
     const speakText = new SpeechSynthesisUtterance(textInput.value);
     // speak end
     speakText.onend = (e) => {
       console.log("Done speaking...");
+      body.style.background = '#000000'; 
     };
 
     // speak error
@@ -92,5 +102,7 @@ pitch.addEventListener("change", (e) => (pitchValue.textContent = pitch.value));
 
 // Voice select change
 voiceSelect.addEventListener("change", (e) => speak());
+
+
 
 
