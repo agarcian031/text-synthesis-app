@@ -1,0 +1,23 @@
+{
+  "name": "text-to-speech-app",
+  "version": "1.0.0",
+  "description": "> Type-n-speak is a text-to-speech application made using vanilla JS and Web Speech API. It utilizes no third party libraries and uses Bootstrap for the UI. I used this application as a way to practice JS fundamentals and more advanced projects as well as incorporating a CSS framework without using a React app. Please see `Installation Instructions` for more details on the application.",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agarcian031/text-synthesis-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agarcian031/text-synthesis-app/issues"
+  },
+  "homepage": "https://agarcian031.github.io/text-synthesis-app/",
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
+  }
+}
