@@ -77,6 +77,20 @@ const speak = () => {
   }
 };
 
+// EVENT LISTENERS
+// form submission: when we click button it will call the speak function
+textForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  speak();
+  textInput.blur();
+});
 
+// Rate value change depending on the slider position
+rate.addEventListener("change", (e) => (rateValue.textContent = rate.value));
+// Pitch value change depending on the slider position
+pitch.addEventListener("change", (e) => (pitchValue.textContent = pitch.value));
+
+// Voice select change
+voiceSelect.addEventListener("change", (e) => speak());
 
 
