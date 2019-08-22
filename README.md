@@ -9,6 +9,8 @@
 2. Different languages and accents available. 
 3. Ability to change rate and pitch of the API response. 
 4. Mobile Responsive
+
+- **NOTE**: More about the Web Speech API can be found [here.](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
 ---
 
 ### Installation Instructions 
